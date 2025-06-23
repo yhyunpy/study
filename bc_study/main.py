@@ -56,7 +56,10 @@ def post_nodes_register(address_list: list[str]):
     return list(blockchain.nodes)
 
 
-@app.get("/nodes/resolve", description="")
+@app.get(
+    "/nodes/resolve",
+    description="네트워크 내 다른 노드들과의 충돌을 해결하고 블록체인을 최신 상태로 교체한다",
+)
 def get_nodes_resolve():
     is_replaced = blockchain.resolve_conflicts()
     return ChainRes(
