@@ -1,0 +1,9 @@
+requests
+bs4
+pandas
+numpy
+yfinance
+jupyter 
+ipykernel
+matplotlib
+pykrx
