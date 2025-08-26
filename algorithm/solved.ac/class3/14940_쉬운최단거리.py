@@ -9,6 +9,9 @@ move = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
 
 def main():
+    """
+    처음 주어진 그래프대로 not visit을 1로 설정하면 실제 거리 1인 칸에서는 visit 여부를 알 수 없게 된다.
+    """
     queue = deque()
 
     def bfs():
@@ -28,7 +31,7 @@ def main():
             if graph[i][j] == 2:
                 graph[i][j] = 0
                 queue.append((i, j))
-            # not visiting 1과 0 다음에 도착한 칸의 1을 구분할 수 없으므로 -1로 not visiting를 표시
+            # -1로 not visit를 표시
             if graph[i][j] == 1:
                 graph[i][j] = -1
 
