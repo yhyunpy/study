@@ -120,9 +120,19 @@ def show_asset_type_pie(asset_df: pd.DataFrame):
         .sort_values(ascending=False)
     )
 
+    def autopct_format(pct, allvals):
+        if pct < 1:
+            return ""
+        absolute = int(round(pct / 100.0 * np.sum(allvals))) / 10000
+        return f"{pct:.1f}%\n({absolute:,.0f}만)"
+
     plt.figure(figsize=(8, 8))
     plt.rcParams["font.family"] = "AppleGothic"
-    summary.plot.pie(autopct=autopct_format, startangle=90, counterclock=False)
+    summary.plot.pie(
+        autopct=lambda pct: autopct_format(pct, summary),
+        startangle=90,
+        counterclock=False,
+    )
     plt.title("자산 종류별 비중")
     plt.ylabel("")
     plt.show()
@@ -154,8 +164,16 @@ def show_stock_pie(asset_df: pd.DataFrame):
     summary.index = summary.index.map(lambda x: group_labels[x])
     summary = summary.groupby(summary.index).sum().sort_values(ascending=False)
 
+    def autopct_format(pct, allvals):
+        absolute = int(round(pct / 100.0 * np.sum(allvals))) / 10000
+        return f"{pct:.1f}%\n({absolute:,.0f}만)"
+
     plt.figure(figsize=(8, 8))
-    summary.plot.pie(autopct=autopct_format, startangle=90, counterclock=False)
+    summary.plot.pie(
+        autopct=lambda pct: autopct_format(pct, summary),
+        startangle=90,
+        counterclock=False,
+    )
     plt.title("주식 종목별 비중")
     plt.ylabel("")
     plt.tight_layout()
