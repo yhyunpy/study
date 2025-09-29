@@ -1,0 +1,3 @@
+- 참고 
+  - 위키독스 (https://wikidocs.net/179292)
+  - 업비트 API 문서 (https://docs.upbit.com/kr)
